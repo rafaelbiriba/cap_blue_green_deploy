@@ -1,6 +1,6 @@
-# CapBlueGreenDeploy
+# Cap Blue Green Deploy (Under Development)
 
-TODO: Write a gem description
+Blue-Green deployment solution for Capistrano, using symbolic links between releases.
 
 ## Installation
 
@@ -16,9 +16,13 @@ Or install it yourself as:
 
     $ gem install cap_blue_green_deploy
 
+And then, require the gem script under your capistrano configuration file (Capfile, deploy.rb, ...):
+
+    require 'cap_blue_green_deploy/capistrano'
+
 ## Usage
 
-TODO: Write usage instructions here
+WIP
 
 ## Contributing
 
