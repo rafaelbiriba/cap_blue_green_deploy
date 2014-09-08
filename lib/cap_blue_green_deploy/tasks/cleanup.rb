@@ -16,4 +16,18 @@ module CapBlueGreenDeploy::Tasks::Cleanup
       try_sudo "rm -rf #{directories}"
     end
   end
+
+  def self.task_load config
+    config.load do
+      namespace :deploy do
+        task :cleanup do
+          blue_green.cleanup
+        end
+
+        namespace :blue_green do
+          task :cleanup, :except => { :no_release => true } { cleanup_task_run }
+        end
+      end
+    end
+  end
 end
