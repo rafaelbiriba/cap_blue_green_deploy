@@ -75,8 +75,22 @@ describe CapBlueGreenDeploy::Tasks do
   end
 
   describe ".load_variables" do
+    before do
+      allow(subject).to receive(:_cset)
+    end
+
     it "should set keep_releases variable" do
       expect(subject).to receive(:_cset).with(:keep_releases, 5)
+      subject.load_variables @config
+    end
+
+    it "should set blue_green_live_dirname variable" do
+      expect(subject).to receive(:_cset).with(:blue_green_live_dirname, "current_live")
+      subject.load_variables @config
+    end
+
+    it "should set blue_green_previous_dirname variable" do
+      expect(subject).to receive(:_cset).with(:blue_green_previous_dirname, "previous_live")
       subject.load_variables @config
     end
   end
