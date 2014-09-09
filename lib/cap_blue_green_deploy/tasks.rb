@@ -12,6 +12,7 @@ module CapBlueGreenDeploy::Tasks
 
   def self.load_libraries config
     config.load do
+      extend Common
       extend Live
       extend Rollback
       extend Cleanup

@@ -1,9 +1,8 @@
 module CapBlueGreenDeploy::Tasks::Live
   def live_task_run
-    current_live = capture("if [ -L #{deploy_to}/current_live ]; then readlink #{deploy_to}/current_live; fi ").strip
-    run "rm -f #{deploy_to}/previous_live && ln -s #{current_live} #{deploy_to}/previous_live" unless current_live.empty?
-    run "rm -f #{deploy_to}/current_live && ln -s #{current_release} #{deploy_to}/current_live"
-    deploy.cleanup
+    current_live = fullpath_by_symlink blue_green_live_path
+    do_symlink current_live, blue_green_previous_path unless current_live.empty?
+    do_symlink current_release, blue_green_live_path
   end
 
   def self.task_load config
@@ -14,6 +13,8 @@ module CapBlueGreenDeploy::Tasks::Live
           task :live, :roles => :app, :except => { :no_release => true } { live_task_run }
         end
       end
+
+      after "deploy:blue_green:live", "deploy:cleanup"
     end
   end
 end

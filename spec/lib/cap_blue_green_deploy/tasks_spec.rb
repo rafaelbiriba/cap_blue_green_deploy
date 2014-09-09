@@ -57,6 +57,10 @@ describe CapBlueGreenDeploy::Tasks do
       def test_cleanup; end
     end
 
+    module CapBlueGreenDeploy::Tasks::Common
+      def test_common; end
+    end
+
     before do
       subject.load_libraries @config
     end
@@ -71,6 +75,10 @@ describe CapBlueGreenDeploy::Tasks do
 
     it "should load cleanup tasks" do
       expect(subject).to respond_to :test_cleanup
+    end
+
+    it "should load common tasks" do
+      expect(subject).to respond_to :test_common
     end
   end
 
