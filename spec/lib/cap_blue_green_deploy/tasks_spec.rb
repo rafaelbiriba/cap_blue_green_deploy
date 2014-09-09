@@ -77,6 +77,11 @@ describe CapBlueGreenDeploy::Tasks do
   describe ".load_variables" do
     before do
       allow(subject).to receive(:_cset)
+      allow(subject).to receive(:deploy_to).and_return(deploy_to)
+    end
+
+    let :deploy_to do
+      "/home"
     end
 
     it "should set keep_releases variable" do
@@ -84,13 +89,13 @@ describe CapBlueGreenDeploy::Tasks do
       subject.load_variables @config
     end
 
-    it "should set blue_green_live_dirname variable" do
-      expect(subject).to receive(:_cset).with(:blue_green_live_dirname, "current_live")
+    it "should set blue_green_live_path variable" do
+      expect(subject).to receive(:_cset).with(:blue_green_live_path, "#{deploy_to}/current_live")
       subject.load_variables @config
     end
 
-    it "should set blue_green_previous_dirname variable" do
-      expect(subject).to receive(:_cset).with(:blue_green_previous_dirname, "previous_live")
+    it "should set blue_green_previous_path variable" do
+      expect(subject).to receive(:_cset).with(:blue_green_previous_path, "#{deploy_to}/previous_live")
       subject.load_variables @config
     end
   end
