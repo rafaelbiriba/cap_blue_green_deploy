@@ -10,4 +10,8 @@ module CapBlueGreenDeploy::Tasks::Common
   def do_symlink from, to
     run "rm -f #{to} && ln -s #{from} #{to}"
   end
+
+  def remove_dirs dirs
+    try_sudo "rm -rf #{dirs}"
+  end
 end
