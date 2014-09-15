@@ -1,6 +1,6 @@
 module CapBlueGreenDeploy::Tasks::Common
   def fullpath_by_symlink sym
-    capture("if [ -L #{sym} ]; then readlink #{sym}; fi ").strip
+    File.exists?(sym) ? File.readlink(sym) : ""
   end
 
   def dirs_inside path
