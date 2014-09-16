@@ -29,8 +29,9 @@ module CapBlueGreenDeploy::Tasks::Cleanup
   def self.task_load config
     config.load do
       namespace :deploy do
+        desc "Clean up old releases"
         task :cleanup do
-          blue_green.cleanup
+          cleanup_task_run
         end
 
         namespace :blue_green do
