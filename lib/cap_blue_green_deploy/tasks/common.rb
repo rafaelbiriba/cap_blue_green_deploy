@@ -4,7 +4,7 @@ module CapBlueGreenDeploy::Tasks::Common
   end
 
   def dirs_inside path
-    Dir.foreach(path).select {|f| !File.directory? f}
+    capture("ls -xt #{path}").split.reverse
   end
 
   def do_symlink from, to
