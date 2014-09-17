@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0-rc1
+## 1.0.0.pre.rc1
 
   - Adding fully functional ```cap deploy:blue_green:live``` command
   - Adding fully functional ```cap deploy:blue_green:rollback``` command
