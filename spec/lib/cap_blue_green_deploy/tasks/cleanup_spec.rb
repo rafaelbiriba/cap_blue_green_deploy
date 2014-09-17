@@ -14,6 +14,46 @@ describe CapBlueGreenDeploy::Tasks::Cleanup do
     @config = double("config")
     allow(@config).to receive(:load) { |&arg| arg.call }
   end
+  
+  describe "#filter_local_releases!" do
+    let :live_path do
+      "live_path"
+    end
+
+    let :previous_path do
+      "previous_path"
+    end
+
+    before do
+      allow(subject).to receive(:fullpath_by_symlink).and_return("")
+      allow(subject).to receive(:blue_green_live_path).and_return(live_path)
+      allow(subject).to receive(:blue_green_previous_path).and_return(previous_path)
+    end
+
+    it "should remove current_live release from local releases list" do
+      expect(subject).to receive(:fullpath_by_symlink).with(live_path).and_return(live_path)
+      subject.instance_variable_set(:@local_releases, [live_path, "teste"])
+      expect(subject.filter_local_releases!).to eq ["teste"]
+      expect(subject.instance_variable_get(:@local_releases)).to eq ["teste"]
+    end
+
+    it "should remove previous_live release from local releases list" do
+      expect(subject).to receive(:fullpath_by_symlink).with(previous_path).and_return(previous_path)
+      subject.instance_variable_set(:@local_releases, [previous_path, "teste"])
+      expect(subject.filter_local_releases!).to eq ["teste"]
+      expect(subject.instance_variable_get(:@local_releases)).to eq ["teste"]
+    end
+  end
+
+  describe "#local_releases" do
+    it "should return fir list inside a path" do
+      path = "/path"
+      dirs = ["dir1", "dir2"]
+      allow(subject).to receive(:releases_path).and_return(path)
+      expect(subject).to receive(:dirs_inside).with(path).and_return(dirs)
+      expect(subject.local_releases).to eq dirs
+    end
+  end
 
   describe ".task_load" do
     let :subject do
