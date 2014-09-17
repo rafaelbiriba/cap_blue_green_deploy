@@ -15,6 +15,41 @@ describe CapBlueGreenDeploy::Tasks::Rollback do
     allow(@config).to receive(:load) { |&arg| arg.call }
   end
 
+  describe "#rollback_task_run" do
+    let :live_path do
+      "live path"
+    end
+
+    let :previous_path do
+      "previous path"
+    end
+
+    let :current_release do
+      "current release"
+    end
+
+    before do
+      allow(subject).to receive(:do_symlink)
+      allow(subject).to receive(:fullpath_by_symlink).and_return("")
+      allow(subject).to receive(:blue_green_live_path).and_return(live_path)
+      allow(subject).to receive(:blue_green_previous_path).and_return(previous_path)
+    end
+
+    it "should create current live symlink linking to rollback release if exists" do
+      previous_live = "link"
+      allow(subject).to receive(:fullpath_by_symlink).with(previous_path).and_return(previous_live)
+      expect(subject).to receive(:do_symlink).with(previous_live, live_path)
+      subject.rollback_task_run
+    end
+
+    it "should log if no rollback releases was found" do
+      logger = Object
+      allow(subject).to receive(:logger).and_return(logger)
+      expect(logger).to receive(:important).with("no old release to rollback")
+      subject.rollback_task_run
+    end
+  end
+
   describe ".task_load" do
     let :subject do
       CapBlueGreenDeploy::Tasks::Rollback
