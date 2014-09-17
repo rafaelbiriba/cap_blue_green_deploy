@@ -15,6 +15,40 @@ describe CapBlueGreenDeploy::Tasks::Live do
     allow(@config).to receive(:load) { |&arg| arg.call }
   end
 
+  describe "#live_task_run" do
+    let :live_path do
+      "live path"
+    end
+
+    let :previous_path do
+      "previous path"
+    end
+
+    let :current_release do
+      "current release"
+    end
+
+    before do
+      allow(subject).to receive(:do_symlink)
+      allow(subject).to receive(:fullpath_by_symlink).and_return("")
+      allow(subject).to receive(:blue_green_live_path).and_return(live_path)
+      allow(subject).to receive(:blue_green_previous_path).and_return(previous_path)
+      allow(subject).to receive(:current_release).and_return(current_release)
+    end
+
+    it "should create rollback symlink linking to current live release if exists" do
+      current_live = "link"
+      allow(subject).to receive(:fullpath_by_symlink).with(live_path).and_return(current_live)
+      expect(subject).to receive(:do_symlink).with(current_live, previous_path)
+      subject.live_task_run
+    end
+
+    it "should create current live symlink linking to the new release" do
+      expect(subject).to receive(:do_symlink).with(current_release, live_path)
+      subject.live_task_run
+    end
+  end
+
   describe ".task_load" do
     let :subject do
       CapBlueGreenDeploy::Tasks::Live
