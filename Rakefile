@@ -3,5 +3,12 @@ require "rspec/core/rake_task"
 
 RSpec::Core::RakeTask.new
 
+namespace :spec do
+  desc "Run Rspec test pushing Coverage results"
+  task :coveralls do
+    run "coveralls push"
+  end
+end
+
 task :default => :spec
 task :test => :spec
