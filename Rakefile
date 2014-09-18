@@ -6,7 +6,7 @@ RSpec::Core::RakeTask.new
 namespace :spec do
   desc "Run Rspec test pushing Coverage results"
   task :coveralls do
-    run "coveralls push"
+    system "coveralls push"
   end
 end
 
