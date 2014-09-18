@@ -14,7 +14,32 @@ describe CapBlueGreenDeploy::Tasks::Cleanup do
     @config = double("config")
     allow(@config).to receive(:load) { |&arg| arg.call }
   end
-  
+
+  describe "#local_releases_fullpath" do
+    let :local_releases do
+      ["1", "2", "3"]
+    end
+
+    let :releases_path do
+      "teste"
+    end
+
+    before do
+      allow(subject).to receive(:local_releases).and_return(local_releases)
+      allow(subject).to receive(:releases_path).and_return(releases_path)
+    end
+
+    it "should return full path of local_releases filtering keep_releases" do
+      allow(subject).to receive(:keep_releases).and_return(1)
+      expect(subject.local_releases_fullpath).to eq("#{releases_path}/1 #{releases_path}/2")
+    end
+
+    it "should empty if keep_releases value is greater than local_releases" do
+      allow(subject).to receive(:keep_releases).and_return(4)
+      expect(subject.local_releases_fullpath).to eq("")
+    end
+  end
+
   describe "#filter_local_releases!" do
     let :live_path do
       "live_path"

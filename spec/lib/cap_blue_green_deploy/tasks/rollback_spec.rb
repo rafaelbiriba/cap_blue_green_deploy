@@ -24,10 +24,6 @@ describe CapBlueGreenDeploy::Tasks::Rollback do
       "previous path"
     end
 
-    let :current_release do
-      "current release"
-    end
-
     before do
       allow(subject).to receive(:do_symlink)
       allow(subject).to receive(:fullpath_by_symlink).and_return("")
