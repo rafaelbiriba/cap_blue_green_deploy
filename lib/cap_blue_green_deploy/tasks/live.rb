@@ -13,8 +13,6 @@ module CapBlueGreenDeploy::Tasks::Live
           task :live, :roles => :app, :except => { :no_release => true } { live_task_run }
         end
       end
-
-      after "deploy:blue_green:live", "deploy:cleanup"
     end
   end
 end

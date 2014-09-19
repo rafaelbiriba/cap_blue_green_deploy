@@ -61,11 +61,6 @@ describe CapBlueGreenDeploy::Tasks::Live do
       allow(subject).to receive(:after)
     end
 
-    it "should create callback to run cleanup after live action" do
-      expect(subject).to receive(:after).with("deploy:blue_green:live", "deploy:cleanup")
-      subject.task_load(@config)
-    end
-
     context "capistrano blue green live task" do
       before do
         expect(subject).to receive(:namespace).with(:deploy) { |&arg| arg.call }
