@@ -15,6 +15,56 @@ describe CapBlueGreenDeploy::Tasks::Cleanup do
     allow(@config).to receive(:load) { |&arg| arg.call }
   end
 
+  describe "#cleanup_task_run" do
+    let :local_releases do
+      ["1", "2", "3"]
+    end
+
+    let :logger do
+      OpenStruct.new(important: nil, info: nil)
+    end
+
+    before do
+      expect(subject).to receive(:filter_local_releases!)
+      allow(subject).to receive(:local_releases).and_return(local_releases)
+      allow(subject).to receive(:logger).and_return(logger)
+    end
+
+    context "with old releases" do
+      let :keep_releases do
+        2
+      end
+
+      before do
+        allow(subject).to receive(:remove_dirs)
+        allow(subject).to receive(:local_releases_fullpath)
+        allow(logger).to receive(:info)
+        allow(subject).to receive(:keep_releases).and_return(keep_releases)
+      end
+
+      it "should log if there is old releases to clean" do
+        expect(logger).to receive(:info).with("keeping #{keep_releases} of #{local_releases.length} deployed releases").and_return(logger)
+        expect(subject).to receive(:logger).and_return(logger)
+        subject.cleanup_task_run
+      end
+
+      it "should call remove dirs if there is old releases to clean" do
+        expect(subject).to receive(:local_releases_fullpath).and_return("/teste")
+        expect(subject).to receive(:remove_dirs).with("/teste")
+        subject.cleanup_task_run
+      end
+    end
+
+    context "without old releases" do
+      it "should log if there is no old releases to clean" do
+        expect(subject).to receive(:keep_releases).and_return(4)
+        expect(logger).to receive(:important).with("no old releases to clean up").and_return(logger)
+        expect(subject).to receive(:logger).and_return(logger)
+        subject.cleanup_task_run
+      end
+    end
+  end
+
   describe "#local_releases_fullpath" do
     let :local_releases do
       ["1", "2", "3"]
