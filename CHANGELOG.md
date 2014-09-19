@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0
+
+  - Removing cleanup callback after live deploy. Need to put manually in Capfile.
+  - Releasing 1.0.0 version :)
+
 ## 1.0.0.pre.rc1
 
   - Adding fully functional ```cap deploy:blue_green:live``` command
