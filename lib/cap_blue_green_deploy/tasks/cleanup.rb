@@ -17,8 +17,8 @@ module CapBlueGreenDeploy::Tasks::Cleanup
   end
 
   def filter_local_releases!
-    current_live = File.basename fullpath_by_symlink(blue_green_live_path)
-    previous_live = File.basename fullpath_by_symlink(blue_green_previous_path)
+    current_live = File.basename fullpath_by_symlink(blue_green_live_dir)
+    previous_live = File.basename fullpath_by_symlink(blue_green_previous_dir)
     local_releases.select! { |release| release != current_live && release != previous_live  }
   end
 

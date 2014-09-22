@@ -27,8 +27,8 @@ describe CapBlueGreenDeploy::Tasks::Rollback do
     before do
       allow(subject).to receive(:do_symlink)
       allow(subject).to receive(:fullpath_by_symlink).and_return("")
-      allow(subject).to receive(:blue_green_live_path).and_return(live_path)
-      allow(subject).to receive(:blue_green_previous_path).and_return(previous_path)
+      allow(subject).to receive(:blue_green_live_dir).and_return(live_path)
+      allow(subject).to receive(:blue_green_previous_dir).and_return(previous_path)
     end
 
     it "should create current live symlink linking to rollback release if exists" do

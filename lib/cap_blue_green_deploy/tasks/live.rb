@@ -1,8 +1,8 @@
 module CapBlueGreenDeploy::Tasks::Live
   def live_task_run
-    current_live = fullpath_by_symlink blue_green_live_path
-    do_symlink current_live, blue_green_previous_path unless current_live.empty?
-    do_symlink current_release, blue_green_live_path
+    current_live = fullpath_by_symlink blue_green_live_dir
+    do_symlink current_live, blue_green_previous_dir unless current_live.empty?
+    do_symlink current_release, blue_green_live_dir
   end
 
   def self.task_load config

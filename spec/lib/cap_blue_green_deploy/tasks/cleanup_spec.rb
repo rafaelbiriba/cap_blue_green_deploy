@@ -101,8 +101,8 @@ describe CapBlueGreenDeploy::Tasks::Cleanup do
 
     before do
       allow(subject).to receive(:fullpath_by_symlink).and_return("")
-      allow(subject).to receive(:blue_green_live_path).and_return(live_path)
-      allow(subject).to receive(:blue_green_previous_path).and_return(previous_path)
+      allow(subject).to receive(:blue_green_live_dir).and_return(live_path)
+      allow(subject).to receive(:blue_green_previous_dir).and_return(previous_path)
     end
 
     it "should remove current_live release from local releases list" do

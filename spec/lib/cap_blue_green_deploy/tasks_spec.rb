@@ -110,12 +110,12 @@ describe CapBlueGreenDeploy::Tasks do
       subject.load_variables @config
     end
 
-    it "should set blue_green_live_path variable" do
+    it "should set blue_green_live_dir variable" do
       expect(subject).to receive(:_cset).with(:blue_green_live_dir, "#{deploy_to}/current_live")
       subject.load_variables @config
     end
 
-    it "should set blue_green_previous_path variable" do
+    it "should set blue_green_previous_dir variable" do
       expect(subject).to receive(:_cset).with(:blue_green_previous_dir, "#{deploy_to}/previous_live")
       subject.load_variables @config
     end
