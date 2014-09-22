@@ -17,6 +17,7 @@ describe CapBlueGreenDeploy::Tasks do
       allow(subject::Live).to receive(:task_load)
       allow(subject::Rollback).to receive(:task_load)
       allow(subject::Cleanup).to receive(:task_load)
+      allow(subject::Deploy).to receive(:task_load)
     end
 
     after do
@@ -42,6 +43,10 @@ describe CapBlueGreenDeploy::Tasks do
     it "should call Cleanup.task_load" do
       expect(subject::Cleanup).to receive(:task_load).with(@config)
     end
+
+    it "should call Cleanup.task_load" do
+      expect(subject::Deploy).to receive(:task_load).with(@config)
+    end
   end
 
   describe ".load_libraries" do
@@ -59,6 +64,10 @@ describe CapBlueGreenDeploy::Tasks do
 
     module CapBlueGreenDeploy::Tasks::Common
       def test_common; end
+    end
+
+    module CapBlueGreenDeploy::Tasks::Deploy
+      def test_deploy; end
     end
 
     before do
@@ -79,6 +88,10 @@ describe CapBlueGreenDeploy::Tasks do
 
     it "should load common tasks" do
       expect(subject).to respond_to :test_common
+    end
+
+    it "should load common deploy" do
+      expect(subject).to respond_to :test_deploy
     end
   end
 

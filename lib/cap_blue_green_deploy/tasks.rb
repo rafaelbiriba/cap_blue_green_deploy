@@ -8,6 +8,7 @@ module CapBlueGreenDeploy::Tasks
     Live.task_load config
     Rollback.task_load config
     Cleanup.task_load config
+    Deploy.task_load config
   end
 
   def self.load_libraries config
@@ -16,6 +17,7 @@ module CapBlueGreenDeploy::Tasks
       extend Live
       extend Rollback
       extend Cleanup
+      extend Deploy
     end
   end
 

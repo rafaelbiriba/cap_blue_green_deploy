@@ -13,7 +13,7 @@ Learn more about
 
 ![architecture](docs/architecture.png?a)
 
-You can do as many deploys you need to **pre** without affecting the live env. Changing symlinks you can easily put your code from validation to production environment. 
+You can do as many deploys you need to **pre** without affecting the live env. Changing symlinks you can easily put your code from validation to production environment.
 
 ## Prerequisite
 
@@ -39,7 +39,19 @@ And then, require the gem script under your capistrano configuration file (Capfi
 
 ## Usage
 
-* **Going to Production** `cap deploy:blue_green:live`
+### Understanding the deploy folder:
+
+  - **current**: Pre environment. Used to test and validate your application.
+  - **current_live**: Live environment. You production access goes here. *This dir name can be customized in custom variables, see below*
+  - **previous_live**: Last live release. Used to do the rollback action of current_live. *This dir name can be customized in custom variables, see below*
+
+### Deploy Commands:
+
+* **Going to Pre** `cap deploy:blue_green:pre`
+
+  This command is an alias for `cap deploy` default task. It will run the deploy process and will create the `current` release
+
+* **Going to Live** `cap deploy:blue_green:live`
 
   This command will change symlinks of `current_live` dir to keep the the same release path of `current` dir. And also create the `previous_live` symlink to track the last current live release used.
 

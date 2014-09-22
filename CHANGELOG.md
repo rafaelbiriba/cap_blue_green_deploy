@@ -3,6 +3,7 @@
 ## ??
 
   - Changing custom variables name for live and previous dir
+  - Adding cap deploy:blue_green:pre command to deploy application
 
 ## 1.0.0
 
