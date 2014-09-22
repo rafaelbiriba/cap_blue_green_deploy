@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["biribarj@gmail.com"]
   spec.description   = "Blue-Green deployment solution for Capistrano, using symbolic links between releases."
   spec.summary       = "Blue-Green deployment solution for Capistrano"
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/rafaelbiriba/cap_blue_green_deploy"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
