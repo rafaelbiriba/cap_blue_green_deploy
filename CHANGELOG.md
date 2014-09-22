@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+  - Cleanup the gem package, removing docs file.
+
 ## 1.1.0
 
   - Changing custom variables name for live and previous dir

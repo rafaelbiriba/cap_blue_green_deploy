@@ -11,7 +11,7 @@ Learn more about
 
 **Cap Blue Green Deployment** is a non canonical Blue Green solution, based on symlinks. Instead of having **blue** and **green**, we have **pre** and **live**. Pre is always validation environment and live it's  production environment.
 
-![architecture](docs/architecture.png)
+![architecture](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/architecture.png)
 
 You can do as many deploys as you need to **pre** without affecting your **live** env. Changing symlinks you can easily put your code from validation to production environment.
 
@@ -81,40 +81,40 @@ And then, require the gem script under your capistrano configuration file (Capfi
 - `set :blue_green_previous_dir, "previous_live"`
 
 **1. Starting with clean server**
-![Clean server](docs/1.server_clean.png)
+![Clean server](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/1.server_clean.png)
 
 **2. Running `cap deploy:setup` to prepare the server**
-![Deploy setup](docs/2.deploy_setup.png)
+![Deploy setup](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/2.deploy_setup.png)
 
 **3. Running `cap deploy` three times to populate the release folder (cleanup code removes one old release)**
-![Deploy](docs/3.1.releases.three_deploys.png)
-![Deploy](docs/3.2.three_deploys.png)
+![Deploy](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/3.1.releases.three_deploys.png)
+![Deploy](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/3.2.three_deploys.png)
 
 **4. Going to live `cap deploy:blue_green:live` (current_live dir will be created. No changes in releases dir)**
-![Blue Green Live](docs/4.1.releases.deploy_blue_green_live.png)
-![Blue Green Live](docs/4.2.deploy_blue_green_live.png)
+![Blue Green Live](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/4.1.releases.deploy_blue_green_live.png)
+![Blue Green Live](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/4.2.deploy_blue_green_live.png)
 
 **5. Running two more deploy with `cap deploy` (current_live will not change. Cleanup remove one old release.)**
-![Deploy](docs/5.1.releases.two_deploy.png)
-![Deploy](docs/5.2.two_deploy.png)
+![Deploy](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/5.1.releases.two_deploy.png)
+![Deploy](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/5.2.two_deploy.png)
 
 **6. Going to live again with `cap deploy:blue_green:live` (At this time, previous_live will be created, targeting the current_live release before change it. No changes in releases dir)**
-![Blue Green Live](docs/6.1.releases.deploy_blue_green_live.png)
-![Blue Green Live](docs/6.2.deploy_blue_green_live.png)
+![Blue Green Live](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/6.1.releases.deploy_blue_green_live.png)
+![Blue Green Live](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/6.2.deploy_blue_green_live.png)
 
 **7. Something goes wrong... Rollbacking with `cap deploy:blue_green:rollback` (The current_live will change to target the same release of previous_live. No changes in releases dir)**
-![Blue Green Rollback](docs/7.1.releases.deploy_blue_green_rollback.png)
-![Blue Green Rollback](docs/7.2.deploy_blue_green_rollback.png)
+![Blue Green Rollback](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/7.1.releases.deploy_blue_green_rollback.png)
+![Blue Green Rollback](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/7.2.deploy_blue_green_rollback.png)
 
 **8. Running one more deploy with `cap deploy` (current_live and previous_live will not change. Cleanup remove one old release.)***
-![Deploy](docs/8.1.releases.one_deploy.png)
-![Deploy](docs/8.2.one_deploy.png)
+![Deploy](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/8.1.releases.one_deploy.png)
+![Deploy](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/8.2.one_deploy.png)
 
 **9. Going to live again with `cap deploy:blue_green:live`**
-![Deploy](docs/9.1.deploy_blue_green_live.png)
+![Deploy](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/9.1.deploy_blue_green_live.png)
 
 **Changing current_live and previous_live variables to use custom names (custom_live_path, custom_rollback_path)**
-![Custom names](docs/custom_variables.png)
+![Custom names](https://raw.githubusercontent.com/rafaelbiriba/cap_blue_green_deploy/master/docs/custom_variables.png)
 
 ## Contributors
 
