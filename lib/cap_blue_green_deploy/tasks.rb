@@ -22,8 +22,8 @@ module CapBlueGreenDeploy::Tasks
   def self.load_variables config
     config.load do
       _cset :keep_releases, 5
-      _cset :blue_green_live_path, "#{deploy_to}/current_live"
-      _cset :blue_green_previous_path, "#{deploy_to}/previous_live"
+      _cset :blue_green_live_dir, "#{deploy_to}/current_live"
+      _cset :blue_green_previous_dir, "#{deploy_to}/previous_live"
     end
   end
 end

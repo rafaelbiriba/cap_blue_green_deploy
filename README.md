@@ -65,14 +65,14 @@ And then, require the gem script under your capistrano configuration file (Capfi
 
   You can change the default value setting new variable in your capistrano file. The default values is:
   - keep_releases: 5
-  - blue_green_live_path: "current_live"
-  - blue_green_previous_path: "previous_live"
+  - blue_green_live_dir: "current_live"
+  - blue_green_previous_dir: "previous_live"
 
 ## How to Play
 **Custom Variables used**
 - `set :keep_releases, 2`
-- `set :blue_green_live_path, "current_live"`
-- `set :blue_green_previous_path, "previous_live"`
+- `set :blue_green_live_dir, "current_live"`
+- `set :blue_green_previous_dir, "previous_live"`
 
 **1. Starting with clean server**
 ![Clean server](docs/1.server_clean.png)

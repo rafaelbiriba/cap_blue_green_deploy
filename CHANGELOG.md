@@ -1,5 +1,9 @@
 # Changelog
 
+## ??
+
+  - Changing custom variables name for live and previous dir
+
 ## 1.0.0
 
   - Removing cleanup callback after live deploy. Need to put manually in Capfile.
