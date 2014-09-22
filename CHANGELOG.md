@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+  - Fixing blue_green_previous and blue_green_live custom variables new names under tasks
+
 ## 1.1.1
 
   - Cleanup the gem package, removing docs file.
