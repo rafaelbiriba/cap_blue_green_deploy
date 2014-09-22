@@ -1,6 +1,6 @@
 # Changelog
 
-## ??
+## 1.1.0
 
   - Changing custom variables name for live and previous dir
   - Adding cap deploy:blue_green:pre command to deploy application
