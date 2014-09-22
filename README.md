@@ -2,13 +2,18 @@
 
 Blue-Green deployment solution for Capistrano, using symbolic links between releases.
 
-## What ??
+## Blue Green Concept
 
-The idea is run two parallel release in production environment. You can setup two web server instance, one to respond for blue (pre deploy, validation environment) and another for green (live deploy, production environment).
+Learn more about
+[Blue Green Deployment with Martin Fowler](http://martinfowler.com/bliki/BlueGreenDeployment.html)
 
-Swapping symlinks you can easily put your code from validation environment to production environment, or rollback to the previous release.
+## Introduction
 
-After deploy to pre environment, you can test and validate your entire project, and if something don't work as expected, just leave this release and start another deploy. When you get ready, just run the live command, and everything goes to live release. Simple :)
+**Cap Blue Green Deployment** is a non canonical Blue Green solution, based on symlinks. Instead of having **blue** and **green**, we have **pre** and **live**. Pre is always validation environment and live it's  production environment.
+
+![architecture](docs/architecture.png?a)
+
+You can do as many deploys you need to **pre** without affecting the live env. Changing symlinks you can easily put your code from validation to production environment. 
 
 ## Prerequisite
 
