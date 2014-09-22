@@ -11,9 +11,9 @@ Learn more about
 
 **Cap Blue Green Deployment** is a non canonical Blue Green solution, based on symlinks. Instead of having **blue** and **green**, we have **pre** and **live**. Pre is always validation environment and live it's  production environment.
 
-![architecture](docs/architecture.png?a)
+![architecture](docs/architecture.png)
 
-You can do as many deploys you need to **pre** without affecting the live env. Changing symlinks you can easily put your code from validation to production environment.
+You can do as many deploys as you need to **pre** without affecting your **live** env. Changing symlinks you can easily put your code from validation to production environment.
 
 ## Prerequisite
 
@@ -42,32 +42,26 @@ And then, require the gem script under your capistrano configuration file (Capfi
 ### Understanding the deploy folder:
 
   - **current**: Pre environment. Used to test and validate your application.
-  - **current_live**: Live environment. You production access goes here. *This dir name can be customized in custom variables, see below*
+  - **current_live**: Live environment. Your production access goes here. *This dir name can be customized in custom variables, see below*
   - **previous_live**: Last live release. Used to do the rollback action of current_live. *This dir name can be customized in custom variables, see below*
 
 ### Deploy Commands:
 
 * **Going to Pre** `cap deploy:blue_green:pre`
 
-  This command is an alias for `cap deploy` default task. It will run the deploy process and will create the `current` release
+  This command is an alias for `cap deploy` default task. It will run the deploy process and create the `current` release
 
 * **Going to Live** `cap deploy:blue_green:live`
 
-  This command will change symlinks of `current_live` dir to keep the the same release path of `current` dir. And also create the `previous_live` symlink to track the last current live release used.
+  This command will change symlinks of `current_live` dir to use the same release path of `current` dir. And also create the `previous_live` symlink to track the last current live release used.
 
-  **More explanations**
-
-  If `current_live` already exists, the `previous_live` dir will be created/updated, copying the same symlink of `current live` release, to keep traking the last valid release.
-
-  Finally, the command will create/update the `current_live` symlink, copying the same symlink of `current` release.
-
-* **Rollbacking** `cap deploy:blue_green:rollback`
+* **Rolling back** `cap deploy:blue_green:rollback`
 
   This command will change the `current_live` symlink to use the same destination of `previous_live` symlink.
 
 * **Cleanup** `cap deploy:blue_green:cleanup`
 
-  This is the same behavior of the default capistrano cleanup `deploy:cleanup`, but the `current_live` and `previous_live` releases will be preserved and not removed.
+  This is the same behavior of the default capistrano cleanup `deploy:cleanup`, but the `current`, `current_live` and `previous_live` releases will be preserved and not removed.
 
   **This lib automatically rewrite the default deploy:cleanup to use this new cleanup function.**
 
@@ -75,7 +69,7 @@ And then, require the gem script under your capistrano configuration file (Capfi
 
 * **Custom Variables**
 
-  You can change the default value setting new variable in your capistrano file. The default values is:
+  You can change the default values by overwriting them in your capistrano file. The default values are:
   - keep_releases: 5
   - blue_green_live_dir: "current_live"
   - blue_green_previous_dir: "previous_live"
@@ -121,6 +115,11 @@ And then, require the gem script under your capistrano configuration file (Capfi
 
 **Changing current_live and previous_live variables to use custom names (custom_live_path, custom_rollback_path)**
 ![Custom names](docs/custom_variables.png)
+
+## Contributors
+
+[Emerson Macedo](https://github.com/emerleite)
+[Celio Latorraca](https://github.com/celiofonseca)
 
 ## Contributing
 
