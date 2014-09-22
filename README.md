@@ -118,8 +118,8 @@ And then, require the gem script under your capistrano configuration file (Capfi
 
 ## Contributors
 
-[Emerson Macedo](https://github.com/emerleite)
-[Celio Latorraca](https://github.com/celiofonseca)
+- [Emerson Macedo](https://github.com/emerleite)
+- [Celio Latorraca](https://github.com/celiofonseca)
 
 ## Contributing
 
