@@ -106,17 +106,23 @@ describe CapBlueGreenDeploy::Tasks do
     end
 
     it "should set keep_releases variable" do
-      expect(subject).to receive(:_cset).with(:keep_releases, 5)
+      expect(subject).to receive(:_cset).with(:keep_releases) do |&arg|
+       expect(arg.call).to eql 5
+      end
       subject.load_variables @config
     end
 
     it "should set blue_green_live_dir variable" do
-      expect(subject).to receive(:_cset).with(:blue_green_live_dir, "#{deploy_to}/current_live")
+      expect(subject).to receive(:_cset).with(:blue_green_live_dir) do |&arg|
+       expect(arg.call).to eql "#{deploy_to}/current_live"
+      end
       subject.load_variables @config
     end
 
     it "should set blue_green_previous_dir variable" do
-      expect(subject).to receive(:_cset).with(:blue_green_previous_dir, "#{deploy_to}/previous_live")
+      expect(subject).to receive(:_cset).with(:blue_green_previous_dir) do |&arg|
+       expect(arg.call).to eql "#{deploy_to}/previous_live"
+      end
       subject.load_variables @config
     end
   end

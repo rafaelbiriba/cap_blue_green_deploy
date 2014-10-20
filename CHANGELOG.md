@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3
+
+  Fixing application name error on multistage environment (issue #1)
+
 ## 1.1.2
 
   - Fixing blue_green_previous and blue_green_live custom variables new names under tasks
