@@ -7,6 +7,13 @@ Blue-Green deployment solution for Capistrano, using symbolic links between rele
 Learn more about
 [Blue Green Deployment with Martin Fowler](http://martinfowler.com/bliki/BlueGreenDeployment.html)
 
+Presentations about *this gem* and the concept:
+  - [Video Presentation - FISL15 - Portuguese](https://www.youtube.com/watch?v=6CR9oZQ_sG4)
+  - [Slides - FISL15 - Portuguese](http://www.slideshare.net/rafaelbiriba/blue-green-deploy-entrega-continua-e-rollback-imediato)
+  - [Video Presentation - QCon RJ - Portuguese](http://www.infoq.com/br/presentations/blue-green-deployment)
+  - [Slides - QCon RJ - Portuguese](http://www.slideshare.net/rafaelbiriba/blue-green-deploy-entrega-continua-e-rollback-imediato-qcon-rio-2014)
+
+
 ## Introduction
 
 **Cap Blue Green Deployment** is a non canonical Blue Green solution, based on symlinks. Instead of having **blue** and **green**, we have **pre** and **live**. Pre is always validation environment and live it's  production environment.
